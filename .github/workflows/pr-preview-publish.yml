@@ -1,0 +1,27 @@
+name: PR Preview - Publish
+
+on:
+  workflow_run:
+    workflows: ["PR Preview - Build"]
+    types: [completed]
+
+jobs:
+  publish:
+    uses: WordPress/action-wp-playground-pr-preview/.github/workflows/preview-publish.yml@adamziel/build-command-reusable-workflows
+    with:
+      blueprint: |
+        {
+          "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+          "steps": [
+            {
+              "step": "installPlugin",
+              "pluginZipFile": { "resource": "url", "url": "{{ARTIFACT_URL:site-toolkit}}" },
+              "options": { "activate": true }
+            },
+            {
+              "step": "installPlugin",
+              "pluginZipFile": { "resource": "url", "url": "{{ARTIFACT_URL:site-analytics}}" },
+              "options": { "activate": true }
+            }
+          ]
+        }

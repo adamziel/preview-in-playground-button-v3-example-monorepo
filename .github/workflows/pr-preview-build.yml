@@ -1,0 +1,19 @@
+name: PR Preview - Build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  build:
+    uses: WordPress/action-wp-playground-pr-preview/.github/workflows/preview-build.yml@adamziel/build-command-reusable-workflows
+    with:
+      artifacts: |
+        site-toolkit=build/site-toolkit.zip
+        site-analytics=build/site-analytics.zip
+      build-command: |
+        set -euo pipefail
+        mkdir -p build
+        for slug in site-toolkit site-analytics; do
+          ( cd "plugins/$slug" && zip -r "../../build/$slug.zip" . )
+        done
