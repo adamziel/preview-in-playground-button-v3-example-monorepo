@@ -6,5 +6,5 @@
  */
 
 add_action('admin_notices', function () {
-    echo '<div class="notice notice-success"><p><strong>Site Toolkit</strong> is active.</p></div>';
+    echo '<div class="notice notice-success"><p><strong>Site Toolkit</strong> is active — smoke test #1.</p></div>';
 });
