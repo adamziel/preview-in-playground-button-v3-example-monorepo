@@ -5,16 +5,12 @@ on:
     workflows: ["PR Preview - Build"]
     types: [completed]
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   publish:
     permissions:
       contents: write
       pull-requests: write
-    uses: WordPress/action-wp-playground-pr-preview/.github/workflows/preview-publish.yml@v3
+    uses: WordPress/action-wp-playground-pr-preview/.github/workflows/preview-publish.yml@1b15093d61b5e98cdfeb31466f34ade495762cd7
     with:
       blueprint: |
         {
@@ -22,12 +18,12 @@ jobs:
           "steps": [
             {
               "step": "installPlugin",
-              "pluginZipFile": { "resource": "url", "url": "{{ARTIFACT_URL:site-toolkit}}" },
+              "pluginData": { "resource": "url", "url": "{{ARTIFACT_URL:site-toolkit}}" },
               "options": { "activate": true }
             },
             {
               "step": "installPlugin",
-              "pluginZipFile": { "resource": "url", "url": "{{ARTIFACT_URL:site-analytics}}" },
+              "pluginData": { "resource": "url", "url": "{{ARTIFACT_URL:site-analytics}}" },
               "options": { "activate": true }
             }
           ]
