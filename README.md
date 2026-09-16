@@ -10,6 +10,6 @@ A monorepo with two plugins (`site-toolkit`, `site-analytics`) that should alway
 - `.github/workflows/pr-preview-build.yml` — produces both zips.
 - `.github/workflows/pr-preview-publish.yml` — exposes both, installs both via a blueprint template.
 
-Both reusable workflows use the v4 release candidate from
-`WordPress/action-wp-playground-pr-preview` at `1b15093d61b5e98cdfeb31466f34ade495762cd7`.
+Both reusable workflows use `WordPress/action-wp-playground-pr-preview` at `@v4`.
+Update the build and publish references together when changing versions.
 The repository name retains `v3` so existing links keep working.
